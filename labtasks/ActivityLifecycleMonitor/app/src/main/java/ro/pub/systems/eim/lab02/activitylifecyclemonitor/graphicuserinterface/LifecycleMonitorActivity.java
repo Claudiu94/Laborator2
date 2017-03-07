@@ -17,6 +17,7 @@ import ro.pub.systems.eim.lab02.activitylifecyclemonitor.general.Utilities;
 public class LifecycleMonitorActivity extends AppCompatActivity {
 
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
+    public static boolean flag=false;
 
     private class ButtonClickListener implements Button.OnClickListener {
 
@@ -61,8 +62,55 @@ public class LifecycleMonitorActivity extends AppCompatActivity {
         okButton.setOnClickListener(buttonClickListener);
         Button cancelButton = (Button) findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(buttonClickListener);
+        if (flag) {
+            Log.d(Constants.TAG, "onCreate() method was invoked with a previous state");
+        }
+        else {
+            Log.d(Constants.TAG, "onCreate() method was invoked without a previous state");
+        }
 
-        Log.d(Constants.TAG, "onCreate() method was invoked without a previous state");
+        flag = true;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(Constants.TAG, "onStart() method was invoked");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(Constants.TAG, "onRestart() method was invoked");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(Constants.TAG, "onPause() method was invoked");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(Constants.TAG, "onResume() method was invoked");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(Constants.TAG, "onStop() method was invoked");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(Constants.TAG, "onDestroy () method was invoked");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        
+    }
 }
